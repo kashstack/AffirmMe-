@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up – AffirmMe</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  </head>
+  <body>
+    <h2>Create Your Account</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="signUp()">Sign Up</button>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDcoLIoiZAZbKqUADqKQSOfKGi8wsRAFn4",
+        authDomain: "affirmme-eeaaf.firebaseapp.com",
+        projectId: "affirmme-eeaaf",
+        storageBucket: "affirmme-eeaaf.appspot.com",
+        messagingSenderId: "241098947706",
+        appId: "1:241098947706:web:116a69c74fd4ed2f588fc3"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      window.signUp = function () {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        createUserWithEmailAndPassword(auth, email, password)
+          .then(() => alert("Signup successful! 🎉"))
+          .catch((error) => alert(error.message));
+      };
+    </script>
+  </body>
+</html>
